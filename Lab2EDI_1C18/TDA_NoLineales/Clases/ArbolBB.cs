@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TDA_NoLineales.Interfaces;
+﻿using TDA_NoLineales.Interfaces;
 
 namespace TDA_NoLineales.Clases
 {
@@ -114,10 +109,65 @@ namespace TDA_NoLineales.Clases
 
         public void Eliminar(T _key)
         {
-            throw new NotImplementedException();
+            encontrar(raiz, _key);
         }
 
-       
+//Codigo a cambiar si no sirve el eliminar
+        private void encontrar(Nodo<T> padre, T valor)
+        {
+            Nodo<T> pivote = padre;
+            
+            if (pivote.CompareTo(valor) < 0)
+                {
+                     encontrar(pivote.derecho, valor);
+                }
+                else if (pivote.CompareTo(valor) > 0)
+                {
+                     encontrar(pivote.izquierdo, valor);
+                }
+                else
+                {
+                    Nodo<T> eliminar = padre;
+                    if (eliminar.derecho == null)
+                    {
+                        padre = eliminar.izquierdo;
+                    }
+                    else
+                    {
+                        if (eliminar.izquierdo == null)
+                        {
+                            padre = eliminar.derecho;
+                        }
+                        else
+                        {
+                            Nodo<T> Nodoauxiliar = null;
+                            Nodo<T> aux = padre.izquierdo;
+                            bool Bandera = false;
+                            while (aux.derecho != null)
+                            {
+                                Nodoauxiliar = aux;
+                                aux = aux.derecho;
+                                Bandera = true;
+                            }
+                            padre.valor = aux.valor;
+                            eliminar = aux;
+                            if (Bandera == true)
+                            {
+                                Nodoauxiliar.derecho = aux.izquierdo;
+                            }
+                            else
+                            {
+                                padre.izquierdo = aux.izquierdo;
+                            }
 
+                        }
+
+                    }
+
+                }
+
+
+            }
+        }
     }
-}
+
