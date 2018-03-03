@@ -156,6 +156,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cadena.cs" />
+    <Compile Include="Models\Entero.cs" />
+    <Compile Include="Models\Pais.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,11 +199,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cadena\Index.cshtml" />
+    <Content Include="Views\Cadena\Create.cshtml" />
+    <Content Include="Views\Entero\Index.cshtml" />
+    <Content Include="Views\Entero\Create.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Pais\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -209,6 +216,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TDA_NoLineales\TDA_NoLineales.csproj">
+      <Project>{92483B97-15E6-4335-A3FF-422712FDD4AF}</Project>
+      <Name>TDA_NoLineales</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

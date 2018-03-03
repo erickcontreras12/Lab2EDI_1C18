@@ -1,17 +1,22 @@
-﻿using System;
+﻿using Lab2EDI_1C18.DBContext;
+using Lab2EDI_1C18.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TDA_NoLineales.Clases;
 
 namespace Lab2EDI_1C18.Controllers
 {
     public class PaisController : Controller
     {
+        DefaultConnection db = DefaultConnection.getInstance;
+
         // GET: Pais
         public ActionResult Index()
         {
-            return View();
+            return View(db.listaPaises.ToList());
         }
 
         // GET: Pais/Details/5
@@ -28,12 +33,14 @@ namespace Lab2EDI_1C18.Controllers
 
         // POST: Pais/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "nombre,Grupo")] Pais pais)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                Nodo<Pais> nuevo = new Nodo<Pais>(pais, CompararPais);
+                db.arbolPaises.Insertar(nuevo);
+                db.listaPaises.Add(pais);
                 return RedirectToAction("Index");
             }
             catch
@@ -84,6 +91,11 @@ namespace Lab2EDI_1C18.Controllers
             {
                 return View();
             }
+        }
+
+        public static int CompararPais(Pais actual, Pais nuevo)
+        {
+            return actual.nombre.CompareTo(nuevo.nombre);
         }
     }
 }

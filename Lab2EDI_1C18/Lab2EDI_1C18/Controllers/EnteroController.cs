@@ -32,7 +32,7 @@ namespace Lab2EDI_1C18.Controllers
 
         // POST: Entero/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Numero")] Entero num)
+        public ActionResult Create([Bind(Include = "valor")] Entero num)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Lab2EDI_1C18.Controllers
 
         public static int CompararEntero(Entero actual, Entero nuevo)
         {
-            return actual.Numero.CompareTo(nuevo.Numero);
+            return actual.valor.CompareTo(nuevo.valor);
         }
     }
 }
