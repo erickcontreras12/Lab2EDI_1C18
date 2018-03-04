@@ -5,7 +5,7 @@ namespace TDA_NoLineales.Clases
     public class ArbolBB<T> : IArbolBB<T>
     {
 
-        private Nodo<T> raiz;
+        public Nodo<T> raiz;
 
         public ArbolBB()
         {

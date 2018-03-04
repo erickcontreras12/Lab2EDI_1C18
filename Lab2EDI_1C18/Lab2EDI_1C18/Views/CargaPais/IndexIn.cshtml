@@ -1,0 +1,41 @@
+﻿@using Lab2EDI_1C18.Models;
+@model  IEnumerable<Lab2EDI_1C18.Models.CargaPais>
+@{
+    ViewBag.Title = "IndexIn";
+}
+
+<h2>IndexIn</h2>
+
+@using (Html.BeginForm("IndexIn", "CargaPais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (Model != null)
+    {
+        <br />
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Grupo)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>                    
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grupo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>                       
+                    </tr>
+                }
+
+            </table>
+    }
+}

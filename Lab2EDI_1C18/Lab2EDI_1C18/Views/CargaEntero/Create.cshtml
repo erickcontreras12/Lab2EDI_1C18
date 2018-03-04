@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "CargaEntero", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <span>Seleccionar archivo:</span>
+    <input type="file" name="postedFile" />
+        <br />
+            <input type="submit" value="Subir" />
+            <span style="color:green">@ViewBag.Message</span>
+}
+<div>
+    @Html.ActionLink("Mostrar Recorrido En Orden", "IndexIn")
+</div>
+<div>
+    @Html.ActionLink("Mostrar Recorrido Post Orden", "IndexPost")
+</div>
+<div>
+    @Html.ActionLink("Mostrar Recorrido Pre Orden", "IndexPre")
+</div>
