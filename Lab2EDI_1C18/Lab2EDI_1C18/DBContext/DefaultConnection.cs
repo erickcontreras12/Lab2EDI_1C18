@@ -19,6 +19,19 @@ namespace Lab2EDI_1C18.DBContext
         public ArbolBB<Entero> arbolEnteros = new ArbolBB<Entero>();
         public List<Entero> listaEnteros = new List<Entero>();
 
+        ////Listas para recorridos
+        //public List<Pais> listaPaisesEnOrden = new List<Pais>();
+        //public List<Pais> listaPaisesPreOrden = new List<Pais>();
+        //public List<Pais> listaPaisesPostOrden = new List<Pais>();
+
+        //public List<Cadena> listaCadenasEnOrden = new List<Cadena>();
+        //public List<Cadena> listaCadenasPreOrden = new List<Cadena>();
+        //public List<Cadena> listaCadenasPostOrden = new List<Cadena>();
+
+        //public List<Entero> listaEnterosEnOrden = new List<Entero>();
+        //public List<Entero> listaEnterosPreOrden = new List<Entero>();
+        //public List<Entero> listaEnterosPostOrden = new List<Entero>();
+
         public int IDActual { get; set; }
 
         private DefaultConnection()

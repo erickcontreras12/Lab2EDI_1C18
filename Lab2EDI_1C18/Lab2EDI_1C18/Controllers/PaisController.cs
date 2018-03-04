@@ -16,6 +16,7 @@ namespace Lab2EDI_1C18.Controllers
         // GET: Pais
         public ActionResult Index()
         {
+
             return View(db.listaPaises.ToList());
         }
 
@@ -41,6 +42,10 @@ namespace Lab2EDI_1C18.Controllers
                 Nodo<Pais> nuevo = new Nodo<Pais>(pais, CompararPais);
                 db.arbolPaises.Insertar(nuevo);
                 db.listaPaises.Add(pais);
+
+                //Recorridos
+
+
                 return RedirectToAction("Index");
             }
             catch
@@ -96,6 +101,16 @@ namespace Lab2EDI_1C18.Controllers
         public static int CompararPais(Pais actual, Pais nuevo)
         {
             return actual.nombre.CompareTo(nuevo.nombre);
+        }
+
+        public static string RecorrerPais(Nodo<Pais> actual)
+        {
+            return "" + actual.valor.nombre + "," + actual.valor.Grupo + ",";
+        }
+
+        public static void RecorrerPais1(Nodo<Pais> actual)
+        {
+            Console.WriteLine("Nombre: " + actual.valor.nombre + " Grupo: " + actual.valor.Grupo);
         }
     }
 }
