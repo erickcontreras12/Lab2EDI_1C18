@@ -44,7 +44,9 @@ namespace Lab2EDI_1C18.Controllers
                 db.listaPaises.Add(pais);
 
                 //Recorridos
-
+                db.arbolPaises.EnOrden(RecorrerPaisIn);
+                db.arbolPaises.PreOrden(RecorrerPaisPre);
+                db.arbolPaises.PostOrden(RecorrerPaisPost);
 
                 return RedirectToAction("Index");
             }
@@ -103,14 +105,18 @@ namespace Lab2EDI_1C18.Controllers
             return actual.nombre.CompareTo(nuevo.nombre);
         }
 
-        public static string RecorrerPais(Nodo<Pais> actual)
-        {
-            return "" + actual.valor.nombre + "," + actual.valor.Grupo + ",";
-        }
 
-        public static void RecorrerPais1(Nodo<Pais> actual)
+        public void RecorrerPaisIn(Nodo<Pais> actual)
         {
-            Console.WriteLine("Nombre: " + actual.valor.nombre + " Grupo: " + actual.valor.Grupo);
+            db.listaPaisesEnOrden.Add(actual.valor);
+        }
+        public void RecorrerPaisPost(Nodo<Pais> actual)
+        {
+            db.listaPaisesPostOrden.Add(actual.valor);
+        }
+        public void RecorrerPaisPre(Nodo<Pais> actual)
+        {
+            db.listaPaisesPreOrden.Add(actual.valor);
         }
     }
 }

@@ -40,7 +40,13 @@ namespace Lab2EDI_1C18.Controllers
                 Nodo<Entero> nuevo = new Nodo<Entero>(num, CompararEntero);
                 db.arbolEnteros.Insertar(nuevo);
                 db.listaEnteros.Add(num);
+
+                //Recorridos
+                db.arbolEnteros.EnOrden(RecorrerEnteroIn);
+                db.arbolEnteros.PreOrden(RecorrerEnteroPre);
+                db.arbolEnteros.PostOrden(RecorrerEnteroPost);
                 return RedirectToAction("Index");
+
             }
             catch
             {
@@ -95,6 +101,21 @@ namespace Lab2EDI_1C18.Controllers
         public static int CompararEntero(Entero actual, Entero nuevo)
         {
             return actual.valor.CompareTo(nuevo.valor);
+        }
+
+        public void RecorrerEnteroIn(Nodo<Entero> actual)
+        {
+            db.listaEnterosEnOrden.Add(actual.valor);
+        }
+
+        public void RecorrerEnteroPre(Nodo<Entero> actual)
+        {
+            db.listaEnterosPreOrden.Add(actual.valor);
+        }
+
+        public void RecorrerEnteroPost(Nodo<Entero> actual)
+        {
+            db.listaEnterosPostOrden.Add(actual.valor);
         }
     }
 }
