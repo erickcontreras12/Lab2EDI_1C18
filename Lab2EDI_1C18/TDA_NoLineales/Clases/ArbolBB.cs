@@ -6,10 +6,14 @@ namespace TDA_NoLineales.Clases
     {
 
         private Nodo<T> raiz;
+        private int size;
+        private int cont;
 
         public ArbolBB()
         {
             raiz = null;
+            size = 0;
+            cont = 0;
         }
 
         public void EnOrden(RecorridoDlg<T> recorrido)
@@ -44,6 +48,63 @@ namespace TDA_NoLineales.Clases
             RecorridoPreOrdenInterno(recorrido, raiz);
         }
 
+        public bool ValidacionArbolDegenerado(Nodo<T> actual)
+        {
+            cont = 0;
+            ValidarDerecha(actual);
+            if (actual.derecho == null)
+            {
+                ValidarIzquierda(actual);
+            }
+            else
+            {
+                ValidarIzquierda(actual.izquierdo);
+            }
+
+            if (cont == size)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void ValidarDerecha(Nodo<T> actual)
+        {
+            if (actual != null)
+            {
+                while (actual.derecho != null)
+                {
+                    if (actual.factor == 1)
+                    {
+                        cont++;
+                    }
+                    actual = actual.derecho;
+                    if (actual.izquierdo != null)
+                    {
+                        ValidarIzquierda(actual);
+                    }
+                }
+            }
+        }
+
+        public void ValidarIzquierda(Nodo<T> actual)
+        {
+            if (actual != null)
+            {
+                while (actual.izquierdo != null)
+                {
+                    if (actual.factor == 1)
+                    {
+                        cont++;
+                    }
+                    actual = actual.izquierdo;
+                    if (actual.derecho != null)
+                    {
+                        ValidarDerecha(actual);
+                    }
+                }
+            }
+        }
 
         private void InsercionInterna(Nodo<T> actual, Nodo<T> nuevo)
         {
@@ -52,6 +113,7 @@ namespace TDA_NoLineales.Clases
                 if (actual.derecho == null)
                 {
                     actual.derecho = nuevo;
+                    actual.factor += 1;
                 }
                 else
                 {
@@ -63,6 +125,7 @@ namespace TDA_NoLineales.Clases
                 if (actual.izquierdo == null)
                 {
                     actual.izquierdo = nuevo;
+                    actual.factor += 1;
                 }
                 else
                 {

@@ -201,10 +201,19 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cadena\Index.cshtml" />
     <Content Include="Views\Cadena\Create.cshtml" />
-    <Content Include="Views\Entero\Index.cshtml" />
     <Content Include="Views\Entero\Create.cshtml" />
-    <Content Include="Views\Pais\Index.cshtml" />
     <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Pais\IndexIn.cshtml" />
+    <Content Include="Views\Pais\IndexPost.cshtml" />
+    <Content Include="Views\Pais\IndexPre.cshtml" />
+    <Content Include="Views\Entero\IndexIn.cshtml" />
+    <Content Include="Views\Entero\IndexPre.cshtml" />
+    <Content Include="Views\Entero\IndexPost.cshtml" />
+    <Content Include="Views\Entero\Index.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
+    <Content Include="Views\Cadena\IndexIn.cshtml" />
+    <Content Include="Views\Cadena\IndexPost.cshtml" />
+    <Content Include="Views\Cadena\IndexPre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

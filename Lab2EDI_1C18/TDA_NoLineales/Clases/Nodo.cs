@@ -13,6 +13,7 @@ namespace TDA_NoLineales.Clases
         public T valor { get; set; }
         public Nodo<T> izquierdo { get; set; }
         public Nodo<T> derecho { get; set; }
+        public int factor;
 
         private CompararNodoDlg<T> comparador;
 
@@ -21,6 +22,7 @@ namespace TDA_NoLineales.Clases
             this.valor = _value;
             this.izquierdo = null;
             this.derecho = null;
+            this.factor = 0;
             comparador = _comparador;
         }
 

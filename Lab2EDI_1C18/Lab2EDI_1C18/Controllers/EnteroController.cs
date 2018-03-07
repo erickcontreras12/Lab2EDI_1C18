@@ -18,6 +18,21 @@ namespace Lab2EDI_1C18.Controllers
             return View(db.listaEnteros.ToList());
         }
 
+        public ActionResult IndexIn()
+        {
+            return View(db.listaEnterosEnOrden.ToList());
+        }
+
+        public ActionResult IndexPre()
+        {
+            return View(db.listaEnterosPreOrden.ToList());
+        }
+
+        public ActionResult IndexPost()
+        {
+            return View(db.listaEnterosPostOrden.ToList());
+        }
+
         // GET: Entero/Details/5
         public ActionResult Details(int id)
         {
@@ -42,6 +57,10 @@ namespace Lab2EDI_1C18.Controllers
                 db.listaEnteros.Add(num);
 
                 //Recorridos
+                db.listaEnterosEnOrden = new List<Entero>();
+                db.listaEnterosPreOrden = new List<Entero>();
+                db.listaEnterosPostOrden = new List<Entero>();
+
                 db.arbolEnteros.EnOrden(RecorrerEnteroIn);
                 db.arbolEnteros.PreOrden(RecorrerEnteroPre);
                 db.arbolEnteros.PostOrden(RecorrerEnteroPost);
@@ -52,6 +71,29 @@ namespace Lab2EDI_1C18.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Arbol()
+        {
+            try
+            {
+                if (db.arbolEnteros.ValidacionArbolDegenerado(db.arbolEnteros.ObtenerRaiz()))
+                {
+                    ViewBag.Message = "SI es un arbol degenerado";
+                }
+                else
+                {
+                    ViewBag.Message = "NO es un arbol degenerado";
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                ViewBag.Message = "Error";
+            }
+
+            return View();
         }
 
         // GET: Entero/Edit/5

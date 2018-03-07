@@ -18,7 +18,18 @@ namespace Lab2EDI_1C18.Controllers
         {
             return View(db.listaCadenas.ToList());
         }
-
+        public ActionResult IndexIn()
+        {
+            return View(db.listaCadenasEnOrden.ToList());
+        }
+        public ActionResult IndexPost()
+        {
+            return View(db.listaCadenasPostOrden.ToList());
+        }
+        public ActionResult IndexPre()
+        {
+            return View(db.listaCadenasPreOrden.ToList());
+        }
         // GET: Cadena/Details/5
         public ActionResult Details(int id)
         {
@@ -41,6 +52,18 @@ namespace Lab2EDI_1C18.Controllers
                 Nodo<Cadena> nuevo = new Nodo<Cadena>(text , CompararCadena);
                 db.arbolCadenas.Insertar(nuevo);
                 db.listaCadenas.Add(text);
+
+                //Recorridos
+
+                db.listaCadenasEnOrden = new List<Cadena>();
+                db.listaCadenasPreOrden = new List<Cadena>();
+                db.listaCadenasPostOrden = new List<Cadena>();
+
+                db.arbolCadenas.EnOrden(RecorrerCadenaIn);
+                db.arbolCadenas.PreOrden(RecorrerCadenaPre);
+                db.arbolCadenas.PostOrden(RecorrerCadenaPost);
+
+
                 return RedirectToAction("Index");
             }
             catch
@@ -96,6 +119,19 @@ namespace Lab2EDI_1C18.Controllers
         public static int CompararCadena(Cadena actual, Cadena nuevo)
         {
             return actual.Texto.CompareTo(nuevo.Texto);
+        }
+
+        public void RecorrerCadenaIn(Nodo<Cadena> actual)
+        {
+            db.listaCadenasEnOrden.Add(actual.valor);
+        }
+        public void RecorrerCadenaPost(Nodo<Cadena> actual)
+        {
+            db.listaCadenasPostOrden.Add(actual.valor);
+        }
+        public void RecorrerCadenaPre(Nodo<Cadena> actual)
+        {
+            db.listaCadenasPreOrden.Add(actual.valor);
         }
     }
 }

@@ -11,21 +11,23 @@
 <div class="row">
     <div class="col-md-4">
         <h2>Insertar datos manuales</h2>
-        <p>Ingresar entero</p>
-        @Html.ActionLink("Insertar enteros", "Create", "Entero")
-        <p>Ingresar cadena</p>
-        @Html.ActionLink("Insertar cadenas", "Create", "Cadena")
-        <p>Ingresar pais</p>
-        @Html.ActionLink("Insertar paises", "Create", "Pais")
+        <p>@Html.ActionLink("Insertar enteros", "Create", "Entero")</p>
+        <p>@Html.ActionLink("Insertar cadenas", "Create", "Cadena")</p>
+        <p>@Html.ActionLink("Insertar paises", "Create", "Pais")</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Insertar con archivo</h2>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+        <h2>Recorridos</h2>
+        <p>@Html.ActionLink("Ver Recorrido EnOrden Paises manual", "IndexIn", "Pais")</p>
+        <p>@Html.ActionLink("Ver Recorrido PreOrden Paises manual", "IndexPre", "Pais")</p>
+        <p>@Html.ActionLink("Ver Recorrido PostOrden Paises manual", "IndexPost", "Pais")</p>
+        <p>@Html.ActionLink("Ver Recorrido EnOrden Entero manual", "IndexIn", "Entero")</p>
+        <p>@Html.ActionLink("Ver Recorrido PreOrden Entero manual", "IndexPre", "Entero")</p>
+        <p>@Html.ActionLink("Ver Recorrido PostOrden Entero manual", "IndexPost", "Entero")</p>
+        <p>@Html.ActionLink("Ver Recorrido EnOrden Cadena", "IndexIn", "Cadena")</p>
+        <p>@Html.ActionLink("Ver Recorrido PreOrden Cadena", "IndexPre", "Cadena")</p>
+        <p>@Html.ActionLink("Ver Recorrido PostOrden Cadena", "IndexPost", "Cadena")</p>
+     </div>
 </div>

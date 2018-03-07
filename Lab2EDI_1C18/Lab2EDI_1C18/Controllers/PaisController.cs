@@ -16,8 +16,19 @@ namespace Lab2EDI_1C18.Controllers
         // GET: Pais
         public ActionResult Index()
         {
-
             return View(db.listaPaises.ToList());
+        }
+        public ActionResult IndexIn()
+        {
+            return View(db.listaPaisesEnOrden.ToList());
+        }
+        public ActionResult IndexPost()
+        {
+            return View(db.listaPaisesPostOrden.ToList());
+        }
+        public ActionResult IndexPre()
+        {
+            return View(db.listaPaisesPreOrden.ToList());
         }
 
         // GET: Pais/Details/5
@@ -44,6 +55,11 @@ namespace Lab2EDI_1C18.Controllers
                 db.listaPaises.Add(pais);
 
                 //Recorridos
+                
+                db.listaPaisesEnOrden = new List<Pais>();
+                db.listaPaisesPreOrden = new List<Pais>();
+                db.listaPaisesPostOrden = new List<Pais>();
+
                 db.arbolPaises.EnOrden(RecorrerPaisIn);
                 db.arbolPaises.PreOrden(RecorrerPaisPre);
                 db.arbolPaises.PostOrden(RecorrerPaisPost);

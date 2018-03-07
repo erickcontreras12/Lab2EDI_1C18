@@ -1,21 +1,17 @@
-﻿@model IEnumerable<Lab2EDI_1C18.Models.Entero>
+﻿@model IEnumerable<Lab2EDI_1C18.Models.Cadena>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexPost";
 }
 
-<h2>Index</h2>
-
+<h2>IndexPost</h2>
 <p>
-        @Html.ActionLink("Create New", "Create")
-        @Html.ActionLink("Ver Recorrido EnOrden", "IndexIn")
-        @Html.ActionLink("Ver Recorrido PreOrden", "IndexPre")
-        @Html.ActionLink("Ver Recorrido PostOrden", "IndexPost")
+    @Html.ActionLink("Volver", "Index")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.valor)
+            @Html.DisplayNameFor(model => model.Texto)
         </th>
         <th></th>
     </tr>
@@ -23,7 +19,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.valor)
+            @Html.DisplayFor(modelItem => item.Texto)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
