@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Laboratorio 2";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Laboratorio 2</h1>
+    <p class="lead">Erick Fabian Alvarez Franco 1070117</p>
+    <p class="lead">Erick Eduardo Contreras Gomez 1009017</p>   
 </div>
 
 <div class="row">
@@ -17,6 +17,8 @@
     </div>
     <div class="col-md-4">
         <h2>Insertar con archivo</h2>
+        <p>@Html.ActionLink("Insertar enteros", "Create", "CargaEntero")</p>       
+        <p>@Html.ActionLink("Insertar paises", "Create", "CargaPais")</p>
     </div>
     <div class="col-md-4">
         <h2>Recorridos</h2>
@@ -29,5 +31,11 @@
         <p>@Html.ActionLink("Ver Recorrido EnOrden Cadena", "IndexIn", "Cadena")</p>
         <p>@Html.ActionLink("Ver Recorrido PreOrden Cadena", "IndexPre", "Cadena")</p>
         <p>@Html.ActionLink("Ver Recorrido PostOrden Cadena", "IndexPost", "Cadena")</p>
+        <p>@Html.ActionLink("Ver Recorrido EnOrden Paises Json", "IndexIn", "CargaPais")</p>
+        <p>@Html.ActionLink("Ver Recorrido PreOrden Paises Json", "IndexPre", "CargaPais")</p>
+        <p>@Html.ActionLink("Ver Recorrido PostOrden Paises Json", "IndexPost", "CargaPais")</p>
+        <p>@Html.ActionLink("Ver Recorrido EnOrden Entero Json", "IndexIn", "CargaEntero")</p>
+        <p>@Html.ActionLink("Ver Recorrido PreOrden Entero Json", "IndexPre", "CargaEntero")</p>
+        <p>@Html.ActionLink("Ver Recorrido PostOrden Entero Json", "IndexPost", "CargaEntero")</p>
      </div>
 </div>

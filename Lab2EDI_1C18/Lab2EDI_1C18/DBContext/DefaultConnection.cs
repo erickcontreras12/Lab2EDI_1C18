@@ -12,11 +12,11 @@ namespace Lab2EDI_1C18.DBContext
         private static volatile DefaultConnection Instance;
         private static object syncRoot = new Object();
 
-        public ArbolBB<Pais> arbolPaises = new ArbolBB<Pais>();
+        public ArbolBB<Pais,string> arbolPaises = new ArbolBB<Pais,string>();
         public List<Pais> listaPaises = new List<Pais>();
-        public ArbolBB<Cadena> arbolCadenas = new ArbolBB<Cadena>();
+        public ArbolBB<Cadena,string> arbolCadenas = new ArbolBB<Cadena,string>();
         public List<Cadena> listaCadenas = new List<Cadena>();
-        public ArbolBB<Entero> arbolEnteros = new ArbolBB<Entero>();
+        public ArbolBB<Entero,int> arbolEnteros = new ArbolBB<Entero,int>();
         public List<Entero> listaEnteros = new List<Entero>();
 
         ////Listas para recorridos

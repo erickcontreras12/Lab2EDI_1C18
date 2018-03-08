@@ -15,7 +15,7 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Numero)
+                    @Html.DisplayNameFor(model => model.valor)
                 </th>            
                 <th></th>
             </tr>
@@ -24,10 +24,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Numero)
+                        @Html.DisplayFor(modelItem => item.valor)
                     </td>                 
                     <td>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Numero })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.valor })
 
                     </td>
                 </tr>

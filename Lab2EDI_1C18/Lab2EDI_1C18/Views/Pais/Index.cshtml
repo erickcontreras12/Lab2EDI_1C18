@@ -7,10 +7,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("Ver Recorrido EnOrden", "IndexIn")
-    @Html.ActionLink("Ver Recorrido PreOrden", "IndexPre")
-    @Html.ActionLink("Ver Recorrido PostOrden", "IndexPost")
+    @Html.ActionLink("Create New", "Create")<br />
+    @Html.ActionLink("Ver Recorrido EnOrden", "IndexIn")<br />
+    @Html.ActionLink("Ver Recorrido PreOrden", "IndexPre")<br />
+    @Html.ActionLink("Ver Recorrido PostOrden", "IndexPost")<br />
+    <br />
+    <br />
+    <br />
+    <span style="color:green">@ViewBag.Tipo</span>
 </p>
 <table class="table">
     <tr>
@@ -32,9 +36,8 @@
             @Html.DisplayFor(modelItem => item.Grupo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+          
+            @Html.ActionLink("Delete", "Delete", new { id = item.nombre })
         </td>
     </tr>
 }

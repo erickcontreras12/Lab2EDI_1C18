@@ -220,6 +220,18 @@
     <Content Include="Views\CargaEntero\IndexPre.cshtml" />
     <Content Include="Views\CargaPais\Delete.cshtml" />
     <Content Include="Views\CargaEntero\Delete.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Entero\Delete.cshtml" />
+    <Content Include="Views\Entero\IndexIn.cshtml" />
+    <Content Include="Views\Entero\IndexPost.cshtml" />
+    <Content Include="Views\Entero\IndexPre.cshtml" />
+    <Content Include="Views\Pais\IndexIn.cshtml" />
+    <Content Include="Views\Pais\IndexPost.cshtml" />
+    <Content Include="Views\Pais\IndexPre.cshtml" />
+    <Content Include="Views\Cadena\IndexIn.cshtml" />
+    <Content Include="Views\Cadena\IndexPost.cshtml" />
+    <Content Include="Views\Cadena\IndexPre.cshtml" />
+    <Content Include="Views\Cadena\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

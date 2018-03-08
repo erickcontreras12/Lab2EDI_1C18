@@ -3,6 +3,7 @@ using Lab2EDI_1C18.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TDA_NoLineales.Clases;
@@ -15,6 +16,18 @@ namespace Lab2EDI_1C18.Controllers
         // GET: Entero
         public ActionResult Index()
         {
+            if (db.arbolEnteros.raiz != null)
+            {
+
+                if (db.arbolEnteros.ValidacionArbolDegenerado(db.arbolEnteros.ObtenerRaiz()))
+                {
+                    ViewBag.Tipo = "SI es un arbol degenerado";
+                }
+                else
+                {
+                    ViewBag.Tipo = "NO es un arbol degenerado";
+                }
+            }
             return View(db.listaEnteros.ToList());
         }
 
@@ -56,6 +69,16 @@ namespace Lab2EDI_1C18.Controllers
                 db.arbolEnteros.Insertar(nuevo);
                 db.listaEnteros.Add(num);
 
+                bool tipoArbol = db.arbolEnteros.ValidacionArbolDegenerado(db.arbolEnteros.raiz);
+                if (tipoArbol == true)
+                {
+                    ViewBag.Tipo = "Arbol equilibrado";
+                }
+                else
+                {
+                    ViewBag.Tipo = "Arbol Degenerado";
+                }
+
                 //Recorridos
                 db.listaEnterosEnOrden = new List<Entero>();
                 db.listaEnterosPreOrden = new List<Entero>();
@@ -64,6 +87,9 @@ namespace Lab2EDI_1C18.Controllers
                 db.arbolEnteros.EnOrden(RecorrerEnteroIn);
                 db.arbolEnteros.PreOrden(RecorrerEnteroPre);
                 db.arbolEnteros.PostOrden(RecorrerEnteroPost);
+
+                db.arbolEnteros.FuncionObtenerLlave = ObtenerClave;
+                db.arbolEnteros.FuncionCompararLlave = CompInt;
                 return RedirectToAction("Index");
 
             }
@@ -72,34 +98,16 @@ namespace Lab2EDI_1C18.Controllers
                 return View();
             }
         }
-
-        public ActionResult Arbol()
-        {
-            try
-            {
-                if (db.arbolEnteros.ValidacionArbolDegenerado(db.arbolEnteros.ObtenerRaiz()))
-                {
-                    ViewBag.Message = "SI es un arbol degenerado";
-                }
-                else
-                {
-                    ViewBag.Message = "NO es un arbol degenerado";
-                }
-                
-            }
-            catch (Exception)
-            {
-
-                ViewBag.Message = "Error";
-            }
-
-            return View();
-        }
+        
 
         // GET: Entero/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
+        }
+        private int ObtenerClave(Entero dato)
+        {
+            return dato.valor;
         }
 
         // POST: Entero/Edit/5
@@ -121,7 +129,19 @@ namespace Lab2EDI_1C18.Controllers
         // GET: Entero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Entero cg = db.listaEnteros.Find(x => x.valor == id);
+
+            if (cg == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(cg);
         }
 
         // POST: Entero/Delete/5
@@ -132,7 +152,17 @@ namespace Lab2EDI_1C18.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                Entero cg = db.listaEnteros.Find(x => x.valor == id);
+                db.arbolEnteros.Eliminar2(cg.valor);
+                db.listaEnterosEnOrden.Clear();
+                db.listaEnterosPostOrden.Clear();
+                db.listaEnterosPreOrden.Clear();
+
+                db.arbolEnteros.EnOrden(RecorrerEnteroIn);
+                db.arbolEnteros.PostOrden(RecorrerEnteroPost);
+                db.arbolEnteros.PreOrden(RecorrerEnteroPre);
+
+                return RedirectToAction("Create");
             }
             catch
             {
@@ -158,6 +188,10 @@ namespace Lab2EDI_1C18.Controllers
         public void RecorrerEnteroPost(Nodo<Entero> actual)
         {
             db.listaEnterosPostOrden.Add(actual.valor);
+        }
+        public static int CompInt(int actual, int nuevo)
+        {
+            return actual.CompareTo(nuevo);
         }
     }
 }

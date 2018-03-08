@@ -71,7 +71,7 @@ namespace Lab2EDI_1C18.Controllers
                     foreach (var item in db.aux1)
                     {
                         Entero a = new Entero();
-                        a.Numero = item;
+                        a.valor = item;
                         Nodo<Entero> x = new Nodo<Entero>(a, CompararEntero);
                         db.EnterosCargados1.Insertar(x);                        
                     }
@@ -104,7 +104,7 @@ namespace Lab2EDI_1C18.Controllers
 
         private int ObtenerClave(Entero dato)
         {
-            return dato.Numero;
+            return dato.valor;
         }
 
         // GET: CargaEntero/Edit/5
@@ -137,7 +137,7 @@ namespace Lab2EDI_1C18.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Entero cg = db.EnterosEnOrden.Find(x => x.Numero == id);
+            Entero cg = db.EnterosEnOrden.Find(x => x.valor == id);
 
             if (cg == null)
             {
@@ -155,8 +155,8 @@ namespace Lab2EDI_1C18.Controllers
             {
                 // TODO: Add delete logic here
 
-                Entero cg = db.EnterosEnOrden.Find(x => x.Numero == id);
-                db.EnterosCargados1.Eliminar2(cg.Numero);
+                Entero cg = db.EnterosEnOrden.Find(x => x.valor == id);
+                db.EnterosCargados1.Eliminar2(cg.valor);
                 db.EnterosEnOrden.Clear();
                 db.EnterosPostOrden.Clear();
                 db.EnterosPreOrden.Clear();
@@ -191,7 +191,7 @@ namespace Lab2EDI_1C18.Controllers
              
         public static int CompararEntero(Entero actual, Entero nuevo)
         {
-            return actual.Numero.CompareTo(nuevo.Numero);
+            return actual.valor.CompareTo(nuevo.valor);
         }
 
         public static int CompInt(int actual, int nuevo)

@@ -3,6 +3,7 @@ using Lab2EDI_1C18.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TDA_NoLineales.Clases;
@@ -16,6 +17,18 @@ namespace Lab2EDI_1C18.Controllers
         // GET: Cadena
         public ActionResult Index()
         {
+            if (db.arbolCadenas.raiz != null)
+            {
+
+                if (db.arbolCadenas.ValidacionArbolDegenerado(db.arbolCadenas.ObtenerRaiz()))
+                {
+                    ViewBag.Tipo = "SI es un arbol degenerado";
+                }
+                else
+                {
+                    ViewBag.Tipo = "NO es un arbol degenerado";
+                }
+            }
             return View(db.listaCadenas.ToList());
         }
         public ActionResult IndexIn()
@@ -63,6 +76,8 @@ namespace Lab2EDI_1C18.Controllers
                 db.arbolCadenas.PreOrden(RecorrerCadenaPre);
                 db.arbolCadenas.PostOrden(RecorrerCadenaPost);
 
+                db.arbolCadenas.FuncionObtenerLlave = ObtenerClave;
+                db.arbolCadenas.FuncionCompararLlave = CompString;
 
                 return RedirectToAction("Index");
             }
@@ -70,6 +85,11 @@ namespace Lab2EDI_1C18.Controllers
             {
                 return View();
             }
+        }
+
+        public static string ObtenerClave(Cadena dato)
+        {
+            return dato.Texto;
         }
 
         // GET: Cadena/Edit/5
@@ -95,18 +115,41 @@ namespace Lab2EDI_1C18.Controllers
         }
 
         // GET: Cadena/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Cadena cg = db.listaCadenas.Find(x => x.Texto == id);
+
+            if (cg == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(cg);
         }
 
         // POST: Cadena/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+
+                Cadena cg = db.listaCadenas.Find(x => x.Texto == id);
+                db.arbolCadenas.Eliminar2(cg.Texto);
+                db.listaCadenas.Remove(cg);
+                db.listaCadenasEnOrden.Clear();
+                db.listaCadenasPostOrden.Clear();
+                db.listaCadenasPreOrden.Clear();
+
+                db.arbolCadenas.EnOrden(RecorrerCadenaIn);
+                db.arbolCadenas.PostOrden(RecorrerCadenaPost);
+                db.arbolCadenas.PreOrden(RecorrerCadenaPre);
 
                 return RedirectToAction("Index");
             }
@@ -114,11 +157,17 @@ namespace Lab2EDI_1C18.Controllers
             {
                 return View();
             }
+
         }
 
         public static int CompararCadena(Cadena actual, Cadena nuevo)
         {
             return actual.Texto.CompareTo(nuevo.Texto);
+        }
+
+        public static int CompString(string actual, string nuevo)
+        {
+            return actual.CompareTo(nuevo);
         }
 
         public void RecorrerCadenaIn(Nodo<Cadena> actual)
