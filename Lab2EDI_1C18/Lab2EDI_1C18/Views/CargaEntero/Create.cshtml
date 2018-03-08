@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Create Entero";
+}
+
+<h2>Carga de Archivo Json para enteros unicamente</h2>
+
+@using (Html.BeginForm("Create", "CargaEntero", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <span>Seleccionar archivo:</span>
+    <br />
+    <input type="file" name="postedFile" />
+        <br />
+            <input type="submit" value="Subir" />
+            <span style="color:green">@ViewBag.Message</span><br />
+            <span style="color:green">@ViewBag.Tipo</span>
+}
+<br />
+<br />
+<br />
+<div>
+    @Html.ActionLink("Mostrar Recorrido En Orden", "IndexIn")
+</div>
+<div>
+    @Html.ActionLink("Mostrar Recorrido Post Orden", "IndexPost")
+</div>
+<div>
+    @Html.ActionLink("Mostrar Recorrido Pre Orden", "IndexPre")
+</div>

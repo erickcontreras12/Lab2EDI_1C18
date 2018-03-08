@@ -149,14 +149,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CadenaController.cs" />
+    <Compile Include="Controllers\CargaEnteroController.cs" />
+    <Compile Include="Controllers\CargaPaisController.cs" />
     <Compile Include="Controllers\EnteroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="DBContext\ConnectionJson.cs" />
     <Compile Include="DBContext\DefaultConnection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cadena.cs" />
+    <Compile Include="Models\CargaEntero.cs" />
+    <Compile Include="Models\CargaPais.cs" />
     <Compile Include="Models\Entero.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -199,21 +204,22 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Cadena\Index.cshtml" />
-    <Content Include="Views\Cadena\Create.cshtml" />
-    <Content Include="Views\Entero\Create.cshtml" />
-    <Content Include="Views\Pais\Create.cshtml" />
-    <Content Include="Views\Pais\IndexIn.cshtml" />
-    <Content Include="Views\Pais\IndexPost.cshtml" />
-    <Content Include="Views\Pais\IndexPre.cshtml" />
-    <Content Include="Views\Entero\IndexIn.cshtml" />
-    <Content Include="Views\Entero\IndexPre.cshtml" />
-    <Content Include="Views\Entero\IndexPost.cshtml" />
-    <Content Include="Views\Entero\Index.cshtml" />
     <Content Include="Views\Pais\Index.cshtml" />
-    <Content Include="Views\Cadena\IndexIn.cshtml" />
-    <Content Include="Views\Cadena\IndexPost.cshtml" />
-    <Content Include="Views\Cadena\IndexPre.cshtml" />
+    <Content Include="Views\Pais\Create.cshtml" />
+    <Content Include="Views\Entero\Index.cshtml" />
+    <Content Include="Views\Entero\Create.cshtml" />
+    <Content Include="Views\Cadena\Create.cshtml" />
+    <Content Include="Views\Cadena\Index.cshtml" />
+    <Content Include="Views\CargaPais\Create.cshtml" />
+    <Content Include="Views\CargaPais\IndexIn.cshtml" />
+    <Content Include="Views\CargaPais\IndexPost.cshtml" />
+    <Content Include="Views\CargaPais\IndexPre.cshtml" />
+    <Content Include="Views\CargaEntero\Create.cshtml" />
+    <Content Include="Views\CargaEntero\IndexIn.cshtml" />
+    <Content Include="Views\CargaEntero\IndexPost.cshtml" />
+    <Content Include="Views\CargaEntero\IndexPre.cshtml" />
+    <Content Include="Views\CargaPais\Delete.cshtml" />
+    <Content Include="Views\CargaEntero\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -228,7 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TDA_NoLineales\TDA_NoLineales.csproj">
-      <Project>{92483B97-15E6-4335-A3FF-422712FDD4AF}</Project>
+      <Project>{92483b97-15e6-4335-a3ff-422712fdd4af}</Project>
       <Name>TDA_NoLineales</Name>
     </ProjectReference>
   </ItemGroup>

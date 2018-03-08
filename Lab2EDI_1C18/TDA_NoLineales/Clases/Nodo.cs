@@ -14,7 +14,6 @@ namespace TDA_NoLineales.Clases
         public Nodo<T> izquierdo { get; set; }
         public Nodo<T> derecho { get; set; }
         public int factor;
-
         private CompararNodoDlg<T> comparador;
 
         public Nodo(T _value, CompararNodoDlg<T> _comparador)

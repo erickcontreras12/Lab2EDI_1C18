@@ -1,0 +1,38 @@
+﻿@using Lab2EDI_1C18.Models;
+@model  IEnumerable<Lab2EDI_1C18.Models.Entero>
+@{
+    ViewBag.Title = "Recorrido en Orden";
+}
+
+<h2>Recorrido en Orden</h2>
+
+@using (Html.BeginForm("IndexIn", "CargaEntero", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (Model != null)
+    {
+        <br />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Numero)
+                </th>            
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero)
+                    </td>                 
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Numero })
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+}
