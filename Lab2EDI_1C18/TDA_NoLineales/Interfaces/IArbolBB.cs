@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using TDA_NoLineales.Clases;
 namespace TDA_NoLineales.Interfaces
 {
-    interface IArbolBB<T>
+    interface IArbolBB<T, K>
     {
         void Insertar(Nodo<T> _nuevo);
 
-        void Eliminar(T _key);
+        void Eliminar(K _key);
 
         Nodo<T> ObtenerRaiz();
 

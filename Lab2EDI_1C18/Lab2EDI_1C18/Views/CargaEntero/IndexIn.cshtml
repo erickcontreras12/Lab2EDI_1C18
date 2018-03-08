@@ -1,10 +1,10 @@
 ﻿@using Lab2EDI_1C18.Models;
 @model  IEnumerable<Lab2EDI_1C18.Models.Entero>
 @{
-    ViewBag.Title = "IndexIn";
+    ViewBag.Title = "Recorrido en Orden";
 }
 
-<h2>IndexIn</h2>
+<h2>Recorrido en Orden</h2>
 
 @using (Html.BeginForm("IndexIn", "CargaEntero", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -26,6 +26,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Numero)
                     </td>                 
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Numero })
+
+                    </td>
                 </tr>
             }
 

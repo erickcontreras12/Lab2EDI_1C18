@@ -11,19 +11,21 @@ namespace Lab2EDI_1C18.DBContext
         private static volatile ConnectionJson Instance;
         private static object syncRoot = new Object();
 
-        public ArbolBB<CargaPais> PaisesCargados = new ArbolBB<CargaPais>();
-        public ArbolBB<int> EnterosCargados = new ArbolBB<int>();
+        public ArbolBB<CargaPais,string> PaisesCargados = new ArbolBB<CargaPais, string>();
+        public ArbolBB<int,int> EnterosCargados = new ArbolBB<int,int>();
         public List<CargaPais> PaisesEnOrden = new List<CargaPais>();
         public List<CargaPais> PaisesPostOrden = new List<CargaPais>();
         public List<CargaPais> PaisesPreOrden = new List<CargaPais>();
         public List<int> aux1 = new List<int>();
 
-        public ArbolBB<Entero> EnterosCargados1 = new ArbolBB<Entero>();
+        public ArbolBB<Entero,int> EnterosCargados1 = new ArbolBB<Entero,int>();
         public List<Entero> EnterosEnOrden = new List<Entero>();
         public List<Entero> EnterosPostOrden = new List<Entero>();
         public List<Entero> EnterosPreOrden = new List<Entero>();
 
         public int IDActual { get; set; }
+
+        
 
         private ConnectionJson()
         {

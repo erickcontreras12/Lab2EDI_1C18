@@ -8,5 +8,5 @@ namespace TDA_NoLineales.Interfaces
 {
     public delegate int CompararNodoDlg<T>(T actual, T nuevo);
     public delegate void RecorridoDlg<T>(Nodo<T> actual);
-    
+    public delegate K ObtenerKey<T, K>(T dato);
 }

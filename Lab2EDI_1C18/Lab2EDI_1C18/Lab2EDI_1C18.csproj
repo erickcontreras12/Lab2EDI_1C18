@@ -218,6 +218,8 @@
     <Content Include="Views\CargaEntero\IndexIn.cshtml" />
     <Content Include="Views\CargaEntero\IndexPost.cshtml" />
     <Content Include="Views\CargaEntero\IndexPre.cshtml" />
+    <Content Include="Views\CargaPais\Delete.cshtml" />
+    <Content Include="Views\CargaEntero\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

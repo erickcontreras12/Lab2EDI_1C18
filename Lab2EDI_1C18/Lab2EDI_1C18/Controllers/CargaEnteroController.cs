@@ -10,6 +10,7 @@ using TDA_NoLineales.Clases;
 using Lab2EDI_1C18.Models;
 using Lab2EDI_1C18.DBContext;
 using Lab2EDI_1C18.Models;
+using System.Net;
 
 namespace Lab2EDI_1C18.Controllers
 {
@@ -49,7 +50,6 @@ namespace Lab2EDI_1C18.Controllers
             if (postedFile != null)
             {
 
-
                 string filepath = string.Empty;
                 string path = Server.MapPath("~/Uploads/");
                 if (!Directory.Exists(path))
@@ -59,8 +59,6 @@ namespace Lab2EDI_1C18.Controllers
                 filepath = path + Path.GetFileName(postedFile.FileName);
                 string extension = Path.GetExtension(postedFile.FileName);
                 postedFile.SaveAs(filepath);
-
-
 
                 string csvData = System.IO.File.ReadAllText(filepath);
 
@@ -77,9 +75,21 @@ namespace Lab2EDI_1C18.Controllers
                         Nodo<Entero> x = new Nodo<Entero>(a, CompararEntero);
                         db.EnterosCargados1.Insertar(x);                        
                     }
+                    db.EnterosCargados1.FuncionObtenerLlave = ObtenerClave;
+                    db.EnterosCargados1.FuncionCompararLlave = CompInt;
                     db.EnterosCargados1.PreOrden(RecorrerEnteroIn);
                     db.EnterosCargados1.PostOrden(RecorrerEnteroPos);
                     db.EnterosCargados1.PreOrden(RecorrerEnteroPre);
+
+                    bool tipoArbol = db.EnterosCargados1.ValidacionArbolDegenerado(db.EnterosCargados1.raiz);
+                    if (tipoArbol == true)
+                    {
+                        ViewBag.Tipo = "Arbol equilibrado";
+                    }
+                    else
+                    {
+                        ViewBag.Tipo = "Arbol Degenerado";
+                    }
 
                 }
                 catch (Exception e)
@@ -90,6 +100,11 @@ namespace Lab2EDI_1C18.Controllers
             }
 
             return View();
+        }
+
+        private int ObtenerClave(Entero dato)
+        {
+            return dato.Numero;
         }
 
         // GET: CargaEntero/Edit/5
@@ -117,7 +132,19 @@ namespace Lab2EDI_1C18.Controllers
         // GET: CargaEntero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Entero cg = db.EnterosEnOrden.Find(x => x.Numero == id);
+
+            if (cg == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(cg);
         }
 
         // POST: CargaEntero/Delete/5
@@ -128,7 +155,17 @@ namespace Lab2EDI_1C18.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                Entero cg = db.EnterosEnOrden.Find(x => x.Numero == id);
+                db.EnterosCargados1.Eliminar2(cg.Numero);
+                db.EnterosEnOrden.Clear();
+                db.EnterosPostOrden.Clear();
+                db.EnterosPreOrden.Clear();
+
+                db.EnterosCargados1.EnOrden(RecorrerEnteroIn);
+                db.EnterosCargados1.PostOrden(RecorrerEnteroPos);
+                db.EnterosCargados1.PreOrden(RecorrerEnteroPre);
+
+                return RedirectToAction("Create");
             }
             catch
             {
@@ -156,5 +193,11 @@ namespace Lab2EDI_1C18.Controllers
         {
             return actual.Numero.CompareTo(nuevo.Numero);
         }
+
+        public static int CompInt(int actual, int nuevo)
+        {
+            return actual.CompareTo(nuevo);
+        }
+
     }
 }
